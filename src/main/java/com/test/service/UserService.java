@@ -1,6 +1,7 @@
 package com.test.service;
 
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.querydsl.QPageRequest;
@@ -17,7 +18,7 @@ import com.test.repository.UserRepository;
 @Transactional
 public class UserService extends ServiceTemplate<User, Integer> {
 
-	public Object crud(Integer page) {
+	public List<User> crud(Integer page) {
 		User entity = new User();
 
 		entity.setUsername("18647958991");
