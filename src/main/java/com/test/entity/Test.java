@@ -1,10 +1,19 @@
 package com.test.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import java.util.Date;
 import java.sql.Timestamp;
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import lombok.Data;
 
 /**
  * The persistent class for the test database table.
@@ -12,7 +21,7 @@ import java.sql.Timestamp;
  */
 @Entity
 @Table(name = "test")
-@NamedQuery(name = "Test.findAll", query = "SELECT t FROM Test t")
+@Data
 public class Test implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,48 +29,12 @@ public class Test implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "created_at", insertable = true, updatable = false)
-	private Date createdAt;
-
 	private String test;
 
-	@Column(name = "updated_at", insertable = true, updatable = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_at", insertable = false, updatable = false)
+	private Date createdAt;
+
+	@Column(name = "updated_at", insertable = false, updatable = false)
 	private Timestamp updatedAt;
-
-	public Test() {
-	}
-
-	public int getId() {
-		return this.id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public Date getCreatedAt() {
-		return this.createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public String getTest() {
-		return this.test;
-	}
-
-	public void setTest(String test) {
-		this.test = test;
-	}
-
-	public Timestamp getUpdatedAt() {
-		return this.updatedAt;
-	}
-
-	public void setUpdatedAt(Timestamp updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
 }

@@ -1,6 +1,5 @@
 package com.test.service;
 
-import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -23,7 +22,6 @@ public class UserService extends ServiceTemplate<User, Integer> {
 
 		entity.setUsername("18647958991");
 		entity.setPassword("123456");
-		entity.setCreatedAt(Calendar.getInstance().getTime());
 		entity = this.save(entity);
 
 		entity.setPassword("654321" + System.currentTimeMillis());

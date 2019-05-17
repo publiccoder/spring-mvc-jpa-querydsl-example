@@ -19,6 +19,10 @@ import com.test.entity.Test;
 public class TestService extends ServiceTemplate<Test, Integer> {
 
 	public List<Map<String, ?>> test() {
+		Test entity = new Test();
+		entity.setTest(System.currentTimeMillis() + "");
+		this.save(entity);
+
 		QTest t = QTest.test1;
 		QUser u = QUser.user;
 		return this.queryFactory.select(t.id, u.username, t.updatedAt, u.createdAt).from(t).join(u).on(t.id.eq(u.id)).where(u.id.gt(0))
