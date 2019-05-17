@@ -7,8 +7,6 @@ import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.querydsl.core.types.Order;
-import com.querydsl.core.types.OrderSpecifier;
 import com.test.entity.QUser;
 import com.test.entity.User;
 import com.test.repository.UserRepository;
@@ -29,8 +27,7 @@ public class UserService extends ServiceTemplate<User, Integer> {
 
 		QUser q = QUser.user;
 		UserRepository repository = (UserRepository) this.repository;
-		Page<User> users = repository.findAll(q.id.gt(entity.getId() - 100),
-				new QPageRequest(page, 10, new OrderSpecifier<>(Order.DESC, q.id)));
+		Page<User> users = repository.findAll(q.id.gt(entity.getId() - 100), new QPageRequest(page, 10, q.id.desc()));
 
 //		this.delete(entity);
 
